@@ -88,6 +88,7 @@ impl ProviderId {
     pub const KIMI_CODING: ProviderId = ProviderId(Cow::Borrowed("kimi_coding"));
     pub const MOONSHOT: ProviderId = ProviderId(Cow::Borrowed("moonshot"));
     pub const ALIBABA_TOKEN_PLAN: ProviderId = ProviderId(Cow::Borrowed("alibaba_token_plan"));
+    pub const HINOKI: ProviderId = ProviderId(Cow::Borrowed("hinoki"));
 
     /// Returns all built-in provider IDs
     ///
@@ -135,6 +136,7 @@ impl ProviderId {
             ProviderId::KIMI_CODING,
             ProviderId::MOONSHOT,
             ProviderId::ALIBABA_TOKEN_PLAN,
+            ProviderId::HINOKI,
         ]
     }
 
@@ -235,6 +237,7 @@ impl std::str::FromStr for ProviderId {
             "kimi_coding" => ProviderId::KIMI_CODING,
             "moonshot" => ProviderId::MOONSHOT,
             "alibaba_token_plan" => ProviderId::ALIBABA_TOKEN_PLAN,
+            "hinoki" => ProviderId::HINOKI,
             // For custom providers, use Cow::Owned to avoid memory leaks
             custom => ProviderId(Cow::Owned(custom.to_string())),
         };
@@ -694,6 +697,24 @@ mod tests {
     #[test]
     fn test_adal_display_name() {
         assert_eq!(ProviderId::ADAL.to_string(), "AdaL");
+    }
+
+    #[test]
+    fn test_hinoki_from_str() {
+        let actual = ProviderId::from_str("hinoki").unwrap();
+        let expected = ProviderId::HINOKI;
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn test_hinoki_display_name() {
+        assert_eq!(ProviderId::HINOKI.to_string(), "Hinoki");
+    }
+
+    #[test]
+    fn test_hinoki_in_built_in_providers() {
+        let built_in = ProviderId::built_in_providers();
+        assert!(built_in.contains(&ProviderId::HINOKI));
     }
 
     #[test]

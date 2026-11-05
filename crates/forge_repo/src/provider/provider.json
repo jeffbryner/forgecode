@@ -9,6 +9,26 @@
     "auth_methods": ["api_key"]
   },
   {
+    "id": "hinoki",
+    "api_key_vars": "HINOKI_API_KEY",
+    "url_param_vars": [],
+    "response_type": "OpenAI",
+    "url": "https://inference.hinoki.security/v1/chat/completions",
+    "models": [
+      {
+        "id": "hinoki-offensive",
+        "name": "Hinoki Offensive",
+        "description": "Hinoki offensive security model based on deepseek-v4.1-flash",
+        "context_length": 1048576,
+        "tools_supported": true,
+        "supports_parallel_tool_calls": true,
+        "supports_reasoning": true,
+        "input_modalities": ["text", "image"]
+      }
+    ],
+    "auth_methods": ["api_key"]
+  },
+  {
     "id": "deepseek",
     "api_key_vars": "DEEPSEEK_API_KEY",
     "url_param_vars": [],
